@@ -176,6 +176,29 @@
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* Load the embedded coverage map only on demand to keep the landing page
+     lighter for users who never need an interactive map. */
+  const mapLoadBtn = document.querySelector('[data-map-load]');
+  if (mapLoadBtn) {
+    mapLoadBtn.addEventListener('click', () => {
+      const target = document.getElementById(mapLoadBtn.dataset.mapTarget || '');
+      if (!target || target.dataset.loaded === 'true') return;
+
+      const iframe = document.createElement('iframe');
+      iframe.src = mapLoadBtn.dataset.mapSrc || '';
+      iframe.title = mapLoadBtn.dataset.mapTitle || 'Coverage map';
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+
+      target.hidden = false;
+      target.dataset.loaded = 'true';
+      target.appendChild(iframe);
+
+      const shell = mapLoadBtn.closest('[data-map-shell]');
+      if (shell) shell.hidden = true;
+    }, { once: true });
+  }
+
   /* Carousel prev/next buttons scroll their target by roughly one card width,
      and disable themselves at either scroll edge. Track -> {prevBtn, nextBtn}
      is built once so edge-checking (which runs on every scroll event) never

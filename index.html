@@ -56,11 +56,10 @@
 <meta name="twitter:image:alt" content="Commercial flat roof completed by AHRoofing North East">
 
 <link rel="preload" as="font" href="assets/fonts/poppins-400.woff2" type="font/woff2" crossorigin>
-<link rel="preload" as="font" href="assets/fonts/poppins-600.woff2" type="font/woff2" crossorigin>
 <link rel="preload" as="font" href="assets/fonts/poppins-700.woff2" type="font/woff2" crossorigin>
 <link rel="preload" as="image" type="image/avif" href="assets/img/hero-1200.avif" imagesrcset="assets/img/hero-640.avif 640w, assets/img/hero-960.avif 960w, assets/img/hero-1200.avif 1200w" imagesizes="100vw" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/fonts.css?v=5">
-<link rel="stylesheet" href="assets/css/styles.css?v=40">
+<link rel="stylesheet" href="assets/css/styles.css?v=41">
 
 <script type="application/ld+json">
 {
@@ -371,7 +370,7 @@
   <div class="container nav-inner">
     <a href="#home" class="brand" aria-label="AHRoofing North East, home">
       <span class="brand-mark" aria-hidden="true">
-        <img src="assets/img/logo.webp" alt="" width="69" height="46" loading="eager">
+        <img src="assets/img/logo.webp?v=2" alt="" width="69" height="46" loading="eager">
       </span>
       <span>
         AHRoofing North East
@@ -414,7 +413,7 @@
   <div class="mobile-nav-scrim" id="mobile-nav-scrim" aria-hidden="true"></div>
   <div class="mobile-nav on-dark" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Mobile navigation" aria-hidden="true" inert>
     <div class="mobile-nav-brand">
-      <img src="assets/img/logo.webp" alt="" width="46" height="31" loading="lazy">
+      <img src="assets/img/logo.webp?v=2" alt="" width="46" height="31" loading="lazy">
       <span>AHRoofing North East</span>
     </div>
     <ul>
@@ -1043,7 +1042,26 @@
         <p class="coverage-note">Not seeing your town listed? These are the main areas, not the full list &mdash; call, text or email and Andy will confirm whether your property falls within the coverage area.</p>
 
         <div class="coverage-map" id="coverage-map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m3!2m1!1sNorth%20East%20England!6i8" title="Map of the North East England area covered by AHRoofing North East, from Northumberland to County Durham and Hartlepool" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          <div class="coverage-map-placeholder" data-map-shell>
+            <span class="coverage-map-kicker">Optional live map</span>
+            <h4>Load the coverage map only if you need it</h4>
+            <p>The Google Maps embed is held back by default to keep the landing page lighter on mobile data and slower connections.</p>
+            <div class="btn-group coverage-map-actions">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-map-load
+                data-map-target="coverage-map-frame"
+                data-map-src="https://www.google.com/maps/embed?pb=!1m3!2m1!1sNorth%20East%20England!6i8"
+                data-map-title="Map of the North East England area covered by AHRoofing North East, from Northumberland to County Durham and Hartlepool"
+              >Load Live Map</button>
+              <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=North+East+England" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+            </div>
+          </div>
+          <div class="coverage-map-frame" id="coverage-map-frame" hidden></div>
+          <noscript>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m3!2m1!1sNorth%20East%20England!6i8" title="Map of the North East England area covered by AHRoofing North East, from Northumberland to County Durham and Hartlepool" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </noscript>
         </div>
       </section>
     </div>
@@ -1056,7 +1074,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#home" class="brand">
-          <span class="brand-mark" aria-hidden="true"><img src="assets/img/logo.webp" alt="" width="69" height="46" loading="lazy"></span>
+          <span class="brand-mark" aria-hidden="true"><img src="assets/img/logo.webp?v=2" alt="" width="69" height="46" loading="lazy"></span>
           <span>AHRoofing North East</span>
         </a>
         <p>Flat Roof Specialists serving homeowners and businesses across the North East for over 30 years.</p>
@@ -1110,6 +1128,6 @@
   </a>
 </nav>
 
-<script src="assets/js/main.js?v=19" defer></script>
+<script src="assets/js/main.js?v=20" defer></script>
 </body>
 </html>
