@@ -1,0 +1,9 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "no-dup-id": "error",
+    "no-missing-references": "error",
+    "no-inline-style": "off",
+    "tel-non-breaking": "off"
+  }
+}

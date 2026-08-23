@@ -1,0 +1,15 @@
+{
+  "name": "ahroofing-north-east",
+  "private": true,
+  "description": "Local QA tooling only. This site has no build step — see PRODUCT.md for why — these scripts just check the static HTML/CSS/JS that already ships. validate:links requires the lychee CLI on PATH (brew install lychee) — the npm package of the same name is an unrelated library, not this tool.",
+  "scripts": {
+    "validate:html": "html-validate \"**/*.html\"",
+    "validate:links": "lychee \"**/*.html\" --exclude-path node_modules",
+    "validate:a11y": "pa11y-ci",
+    "test": "npm run validate:html && npm run validate:links"
+  },
+  "devDependencies": {
+    "html-validate": "^11.9.0",
+    "pa11y-ci": "^4.1.1"
+  }
+}
