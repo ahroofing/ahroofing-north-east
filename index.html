@@ -59,7 +59,7 @@
 <link rel="preload" as="font" href="assets/fonts/poppins-700.woff2" type="font/woff2" crossorigin>
 <link rel="preload" as="image" type="image/avif" href="assets/img/hero-1200.avif" imagesrcset="assets/img/hero-640.avif 640w, assets/img/hero-960.avif 960w, assets/img/hero-1200.avif 1200w" imagesizes="100vw" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/fonts.css?v=5">
-<link rel="stylesheet" href="assets/css/styles.css?v=41">
+<link rel="stylesheet" href="assets/css/styles.css?v=42">
 
 <script type="application/ld+json">
 {
@@ -1042,26 +1042,16 @@
         <p class="coverage-note">Not seeing your town listed? These are the main areas, not the full list &mdash; call, text or email and Andy will confirm whether your property falls within the coverage area.</p>
 
         <div class="coverage-map" id="coverage-map">
-          <div class="coverage-map-placeholder" data-map-shell>
-            <span class="coverage-map-kicker">Optional live map</span>
-            <h4>Load the coverage map only if you need it</h4>
-            <p>The Google Maps embed is held back by default to keep the landing page lighter on mobile data and slower connections.</p>
-            <div class="btn-group coverage-map-actions">
-              <button
-                type="button"
-                class="btn btn-primary"
-                data-map-load
-                data-map-target="coverage-map-frame"
-                data-map-src="https://www.google.com/maps/embed?pb=!1m3!2m1!1sNorth%20East%20England!6i8"
-                data-map-title="Map of the North East England area covered by AHRoofing North East, from Northumberland to County Durham and Hartlepool"
-              >Load Live Map</button>
-              <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=North+East+England" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
-            </div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m3!2m1!1sNorth%20East%20England!6i8"
+            title="Map of the North East England area covered by AHRoofing North East, from Northumberland to County Durham and Hartlepool"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+          <div class="coverage-map-actions">
+            <a class="btn btn-sm btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=North+East+England" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+            <a class="btn btn-sm btn-ghost" href="https://www.google.com/maps/embed?pb=!1m3!2m1!1sNorth%20East%20England!6i8" target="_blank" rel="noopener noreferrer">Open in new tab</a>
           </div>
-          <div class="coverage-map-frame" id="coverage-map-frame" hidden></div>
-          <noscript>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m3!2m1!1sNorth%20East%20England!6i8" title="Map of the North East England area covered by AHRoofing North East, from Northumberland to County Durham and Hartlepool" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-          </noscript>
         </div>
       </section>
     </div>
@@ -1128,6 +1118,6 @@
   </a>
 </nav>
 
-<script src="assets/js/main.js?v=20" defer></script>
+<script src="assets/js/main.js?v=21" defer></script>
 </body>
 </html>
