@@ -86,6 +86,7 @@ html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
   margin: 0;
+  padding-top: var(--header-h);
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.6;
@@ -197,7 +198,7 @@ button { font: inherit; }
    ========================================================================== */
 
 .site-header {
-  position: sticky; top: 0; z-index: 950;
+  position: fixed; inset: 0 0 auto; z-index: 950;
   background: rgba(255,255,255,0.98);
   border-bottom: 1px solid transparent;
   transition: box-shadow var(--dur-fast) var(--ease-out-expo), border-color var(--dur-fast) var(--ease-out-expo), background-color var(--dur-fast) var(--ease-out-expo);

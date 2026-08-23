@@ -6,7 +6,7 @@
   // class, a failed/blocked script leaves all content plainly visible.
   document.documentElement.classList.add('js');
 
-  /* Sticky nav elevation on scroll */
+  /* Fixed nav elevation on scroll */
   const header = document.querySelector('.site-header');
   if (header) {
     const setScrolled = () => {
