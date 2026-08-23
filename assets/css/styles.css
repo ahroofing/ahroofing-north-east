@@ -952,29 +952,37 @@ button { font: inherit; }
 .mobile-bar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 600;
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(255,255,255,0.06);
+  gap: 0;
+  background: var(--navy-950);
   border-top: 1px solid rgba(255,255,255,0.08);
   box-shadow: 0 -8px 24px rgba(11,18,32,0.28);
-  padding-bottom: env(safe-area-inset-bottom);
+  padding: 0.5rem 0.5rem calc(0.5rem + env(safe-area-inset-bottom));
 }
-@supports (backdrop-filter: blur(1px)) {
-  .mobile-bar { background: rgba(255,255,255,0.06); }
+@supports (backdrop-filter: blur(12px)) {
+  .mobile-bar { background: rgba(11,18,32,0.92); backdrop-filter: blur(12px); }
 }
 .mobile-bar a {
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35rem;
-  padding: 0.7rem 0.5rem;
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.01em; color: rgba(255,255,255,0.85);
-  background: rgba(11,18,32,0.98); text-decoration: none;
-  transition: background-color var(--dur-fast) var(--ease-out-expo), color var(--dur-fast) var(--ease-out-expo);
+  display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 0.5rem;
+  margin: 0.15rem;
+  padding: 0.65rem 0.5rem;
+  border-radius: var(--radius-lg);
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.01em; color: rgba(255,255,255,0.78);
+  background: transparent; text-decoration: none;
+  transition: background-color var(--dur-fast) var(--ease-out-expo), color var(--dur-fast) var(--ease-out-expo), transform var(--dur-fast) var(--ease-out-expo);
 }
-.mobile-bar a:active { background: rgba(255,255,255,0.1); }
-.mobile-bar svg { width: 1.25rem; height: 1.25rem; }
+.mobile-bar a:not(:last-child) { position: relative; }
+.mobile-bar a:not(:last-child)::after {
+  content: ''; position: absolute; right: -1px; top: 22%; bottom: 22%; width: 1px;
+  background: rgba(255,255,255,0.1);
+}
+.mobile-bar .is-primary::after, .mobile-bar a:active::after { display: none; }
+.mobile-bar a:active { background: rgba(255,255,255,0.08); transform: scale(0.97); }
+.mobile-bar svg { width: 1.1rem; height: 1.1rem; flex-shrink: 0; }
 .mobile-bar .is-primary {
   background: var(--amber-500); color: var(--navy-950);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
+  box-shadow: 0 4px 14px rgba(242,140,40,0.35);
 }
-.mobile-bar .is-primary:active { background: var(--amber-600); }
+.mobile-bar .is-primary:active { background: var(--amber-600); transform: scale(0.97); }
 
 /* --mobile-contact-h is the bar's own reserved height; safe-area is added
    on top, once, here — not also inside each link (that was double-counting
