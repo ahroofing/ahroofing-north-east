@@ -513,6 +513,12 @@ button { font: inherit; }
 .sgc-cta { margin-top: 0.75rem; }
 .sgc-cta a {
   display: inline-flex; align-items: center; gap: 0.4rem;
+  /* padding-block, not a taller line-height: WCAG 2.2's 2.5.8 Target Size
+     (AA) wants a 24px-tall hit area; the text itself only needs to look
+     like a compact link, so the extra height goes to invisible padding,
+     with a negative margin to cancel the padding's effect on surrounding
+     layout spacing. */
+  padding-block: 0.15rem; margin-block: -0.15rem;
   font-size: 0.86rem; font-weight: 700; color: var(--amber-700); text-decoration: none;
 }
 .sgc-cta a svg { width: 1rem; height: 1rem; transition: transform var(--dur-fast) var(--ease-out-expo); }

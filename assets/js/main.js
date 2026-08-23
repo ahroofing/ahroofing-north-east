@@ -54,7 +54,7 @@
     const behindOverlay = [
       document.querySelector('.brand'),
       document.querySelector('.nav-links'),
-      document.querySelector('.nav-call'),
+      document.querySelector('.nav-quick-actions'),
       document.getElementById('main'),
       document.querySelector('.site-footer'),
       document.querySelector('.mobile-bar'),
@@ -177,17 +177,24 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   /* Carousel prev/next buttons scroll their target by roughly one card width,
-     and disable themselves at either scroll edge. */
-  const carouselTracks = new Set();
+     and disable themselves at either scroll edge. Track -> {prevBtn, nextBtn}
+     is built once so edge-checking (which runs on every scroll event) never
+     re-queries the DOM. */
+  const carouselTracks = new Map();
   document.querySelectorAll('[data-carousel-prev], [data-carousel-next]').forEach((btn) => {
     const targetId = btn.dataset.carouselPrev || btn.dataset.carouselNext;
     const track = document.getElementById(targetId);
     if (!track) return;
-    carouselTracks.add(track);
+    const entry = carouselTracks.get(track) || {};
+    if (btn.dataset.carouselPrev) entry.prevBtn = btn; else entry.nextBtn = btn;
+    carouselTracks.set(track, entry);
     const direction = btn.dataset.carouselPrev ? -1 : 1;
     btn.addEventListener('click', () => {
       const card = track.querySelector(':scope > *');
-      const step = card ? card.getBoundingClientRect().width + 24 : track.clientWidth * 0.8;
+      // Real gap, not a hardcoded copy of the CSS value — stays correct if
+      // .service-groups' gap ever changes without this file being touched.
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      const step = card ? card.getBoundingClientRect().width + gap : track.clientWidth * 0.8;
       track.scrollBy({ left: step * direction, behavior: 'smooth' });
     });
   });
@@ -195,21 +202,19 @@
      card rather than sitting at literal 0 (its container has inline
      padding for the peek-past-the-edge bleed) — so "start" is measured
      against that resting offset, captured once per track, not a hardcoded 0. */
-  const updateCarouselEdges = (track) => {
-    const prevBtn = document.querySelector(`[data-carousel-prev="${track.id}"]`);
-    const nextBtn = document.querySelector(`[data-carousel-next="${track.id}"]`);
+  const updateCarouselEdges = (track, { prevBtn, nextBtn }) => {
     const maxScroll = track.scrollWidth - track.clientWidth;
     const startOffset = track._startScroll ?? 0;
     if (prevBtn) prevBtn.disabled = track.scrollLeft <= startOffset + 1;
     if (nextBtn) nextBtn.disabled = track.scrollLeft >= maxScroll - 1;
   };
-  carouselTracks.forEach((track) => {
+  carouselTracks.forEach((buttons, track) => {
     requestAnimationFrame(() => {
       track._startScroll = track.scrollLeft;
-      updateCarouselEdges(track);
+      updateCarouselEdges(track, buttons);
     });
-    track.addEventListener('scroll', () => updateCarouselEdges(track), { passive: true });
-    window.addEventListener('resize', () => updateCarouselEdges(track));
+    track.addEventListener('scroll', () => updateCarouselEdges(track, buttons), { passive: true });
+    window.addEventListener('resize', () => updateCarouselEdges(track, buttons));
   });
 
 })();
