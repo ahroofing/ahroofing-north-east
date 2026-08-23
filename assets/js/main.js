@@ -57,7 +57,6 @@
       document.querySelector('.nav-quick-actions'),
       document.getElementById('main'),
       document.querySelector('.site-footer'),
-      document.querySelector('.mobile-bar'),
     ].filter(Boolean);
 
     let previouslyFocused;
